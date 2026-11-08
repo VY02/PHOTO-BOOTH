@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f1e9">
+  <meta name="description" content="A little photo booth in your browser. Snap, style, and save photo booth memories.">
+  <title>Photo booth — make a little memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Photo booth home">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>little <strong>photo booth</strong></span>
+      </a>
+      <div class="top-note"><span class="live-dot"></span> A tiny studio, just for you</div>
+      <a class="about-link" href="#how-it-works">How it works <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="top">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">YOUR MOMENT, YOUR WAY</p>
+        <h1 id="page-title">Make a little <em>memory.</em></h1>
+        <p class="intro-copy">Strike a pose, pick your vibe, and take home something lovely.</p>
+      </section>
+
+      <section class="booth-layout" aria-label="Photo booth">
+        <div class="studio-card">
+          <div class="studio-heading">
+            <div>
+              <span class="step-label">01 <span> / 03</span></span>
+              <h2>Get camera-ready</h2>
+            </div>
+            <span class="camera-status" id="camera-status"><span class="status-dot"></span><span id="status-text">Camera off</span></span>
+          </div>
+
+          <div class="viewfinder" id="viewfinder">
+            <video id="camera" autoplay playsinline muted aria-label="Your live camera preview"></video>
+            <div class="preview-placeholder" id="preview-placeholder">
+              <div class="placeholder-icon" aria-hidden="true"><span></span></div>
+              <p>Your camera preview will show up here</p>
+              <span>Good light, good mood, good to go.</span>
+            </div>
+            <div class="viewfinder-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="countdown hidden" id="countdown" aria-live="assertive"></div>
+            <div class="flash hidden" id="flash" aria-hidden="true"></div>
+            <div class="preview-badge"><span class="live-dot"></span> LIVE</div>
+            <div class="shot-progress hidden" id="shot-progress" aria-live="polite"></div>
+          </div>
+
+          <div class="controls-row">
+            <div class="control-group">
+              <label class="control-label" for="filter-select">YOUR VIBE</label>
+              <div class="select-wrap">
+                <select id="filter-select" aria-label="Choose a photo filter">
+                  <option value="natural">Natural</option>
+                  <option value="warm">Golden hour</option>
+                  <option value="bw">Classic B&amp;W</option>
+                  <option value="dreamy">Soft focus</option>
+                  <option value="pop">Color pop</option>
+                </select>
+                <span aria-hidden="true">⌄</span>
+              </div>
+            </div>
+            <div class="control-group format-group">
+              <span class="control-label">FORMAT</span>
+              <div class="segmented" role="group" aria-label="Photo format">
+                <button class="format-button active" type="button" data-format="strip" aria-pressed="true">Photo strip</button>
+                <button class="format-button" type="button" data-format="single" aria-pressed="false">Single shot</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="camera-button" id="camera-button" type="button">
+              <span class="camera-button-icon" aria-hidden="true">◎</span>
+              <span>Turn on camera</span>
+            </button>
+            <button class="capture-button" id="capture-button" type="button" disabled>
+              <span class="shutter-icon" aria-hidden="true"></span>
+              <span id="capture-label">Start photo strip</span>
+            </button>
+          </div>
+          <p class="privacy-note"><span aria-hidden="true">♧</span> Your photos stay on this device. Nothing is uploaded.</p>
+        </div>
+
+        <aside class="keepsake-panel" aria-labelledby="keepsake-title">
+          <div class="panel-heading">
+            <div>
+              <span class="step-label">02 <span> / 03</span></span>
+              <h2 id="keepsake-title">Your keepsakes</h2>
+            </div>
+            <span class="photo-count" id="photo-count">0</span>
+          </div>
+          <div class="gallery" id="gallery">
+            <div class="empty-state" id="empty-state">
+              <div class="empty-art" aria-hidden="true">
+                <div class="mini-photo mini-photo-back"></div>
+                <div class="mini-photo mini-photo-front"><span>✳</span></div>
+              </div>
+              <h3>A little room for memories</h3>
+              <p>Your photos will appear here. Save your favorites before you leave.</p>
+            </div>
+          </div>
+          <div class="keepsake-footer">
+            <div class="footer-copy">
+              <span class="step-label">03 <span> / 03</span></span>
+              <p>Keep the good ones.</p>
+            </div>
+            <button class="download-all" id="download-all" type="button" disabled>
+              <span aria-hidden="true">↓</span> Save all
+            </button>
+          </div>
+        </aside>
+      </section>
+
+      <section class="how-section" id="how-it-works">
+        <div class="how-title"><span class="eyebrow">NO FUSS, ALL FUN</span><h2>Three little steps.</h2></div>
+        <div class="steps-grid">
+          <article class="step-card"><span class="step-number">01</span><div class="step-illustration camera-illustration" aria-hidden="true">◎</div><h3>Set the scene</h3><p>Allow camera access, pick a filter, and find your light.</p></article>
+          <article class="step-card"><span class="step-number">02</span><div class="step-illustration timer-illustration" aria-hidden="true">3<span>…</span></div><h3>Make a moment</h3><p>Take one sweet snap or a classic four-frame strip.</p></article>
+          <article class="step-card"><span class="step-number">03</span><div class="step-illustration save-illustration" aria-hidden="true">↓</div><h3>Keep it close</h3><p>Download your photos to keep, print, or send to a friend.</p></article>
+        </div>
+      </section>
+      <footer class="site-footer"><span>Made for the moments in between.</span><span>✳ &nbsp; Smile, you're here.</span></footer>
+    </main>
+  </div>
+
+  <canvas id="capture-canvas" class="visually-hidden" aria-hidden="true"></canvas>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
